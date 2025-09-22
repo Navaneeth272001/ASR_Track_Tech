@@ -8,15 +8,33 @@ FRAME_MS = 20
 
 # Class definitions with aliases
 CLASS_MAP = {
-    "Super Pro": ["super pro", "s pro", "su pro", "supro"],
-    "Sportsman": ["sportsman", "sports man", "sportzman"],
-    "Amateur": ["amateur", "amature", "amatuer"]
+    # Existing drag race style
+    "amateur": ["amateur", "amateurs"],
+    "pro": ["pro", "pros", "professional"],
+    "junior": ["junior", "juniors"],
+
+    # New race-track categories
+    "safety_car": ["safety car", "pace car"],
+    "medical_car": ["medical car", "ambulance"],
+    "marshal": ["marshal", "marshals", "track official"],
+    "spectators": ["spectator", "spectators", "audience", "fans"],
+    "weather": ["rain", "storm", "wet track", "dry track"],
+    "winner": ["winner", "champion", "podium", "first place"],
 }
 
 # Intents
 INTENT_PATTERNS = {
-    "CLASS_TO_LANES": ["to the lanes", "to lanes"],
-    "CLASS_STANDBY": ["standby", "on standby"]
+    "CLASS_TO_LANES": ["to the lanes", "proceed to the lanes", "report to the lanes"],
+    "CLASS_STANDBY": ["standby", "get ready", "prepare"],
+    "RACE_CONTROL": [
+        "blue flag", "yellow flag", "red flag",
+        "safety car", "virtual safety car",
+        "under investigation"
+    ],
+    "PIT_STRATEGY": ["box", "pit", "tire", "strategy", "stay out"],
+    "INCIDENT": ["crash", "accident", "stopped", "fire", "debris"],
+    "RACE_END": ["checkered flag", "winner", "podium", "end of race", "race complete"],
+    "GENERAL_INFO": ["attention", "briefing", "announcement", "spectators"],
 }
 
 # Delivery endpoint (replace with your API / SNS / FCM gateway)

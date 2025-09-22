@@ -52,7 +52,23 @@ def build_messages(transcript, timestamp):
     for cls in classes:
         for intent in intents:
             if should_send(cls, intent):
-                text = f"{cls} to the lanes" if intent == "CLASS_TO_LANES" else f"{cls} standby"
+                if intent == "CLASS_TO_LANES":
+                    text = f"{cls} to the lanes"
+                elif intent == "CLASS_STANDBY":
+                    text = f"{cls} standby"
+                elif intent == "RACE_CONTROL":
+                    text = f"Race control message: {transcript}"
+                elif intent == "PIT_STRATEGY":
+                    text = f"Pit strategy alert for {cls}: {transcript}"
+                elif intent == "INCIDENT":
+                    text = f"Incident reported for {cls}: {transcript}"
+                elif intent == "RACE_END":
+                    text = f"Race finished for {cls}: {transcript}"
+                elif intent == "GENERAL_INFO":
+                    text = f"Attention {cls}: {transcript}"
+                else:
+                    text = transcript  # fallback
+                
                 msgs.append({
                     "class_id": cls,
                     "intent": intent,
@@ -61,3 +77,4 @@ def build_messages(transcript, timestamp):
                     "timestamp": timestamp
                 })
     return msgs
+

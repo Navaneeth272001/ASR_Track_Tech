@@ -1,4 +1,6 @@
+# main.py - Updated to work with fixed transcribe_ws.py
 import asyncio
+import signal
 from transcribe_ws import stream_audio
 from classifier import build_messages
 from config import DEBUG, DELIVERY_MODE
@@ -11,7 +13,8 @@ else:
     raise ValueError("Unknown DELIVERY_MODE in config.py")
 
 async def on_transcript(text, ts_iso):
-    if DEBUG: print("[transcript]", text)
+    if DEBUG: 
+        print("[transcript]", text)
     messages = build_messages(text, ts_iso)
     for m in messages:
         try:
@@ -27,7 +30,41 @@ async def main():
     if DELIVERY_MODE == "MQTT":
         init_mqtt()
     flush_outbox()
-    await stream_audio(on_transcript)
+
+    # Create a task for the audio streaming
+    audio_task = asyncio.create_task(stream_audio(on_transcript))
+
+    # Graceful shutdown handler
+    stop_event = asyncio.Event()
+
+    def shutdown_signal():
+        if DEBUG: print("[main] shutdown signal received")
+        stop_event.set()
+
+    # Set up signal handlers for graceful shutdown
+    if hasattr(signal, 'SIGINT'):
+        signal.signal(signal.SIGINT, lambda s, f: shutdown_signal())
+    if hasattr(signal, 'SIGTERM'):
+        signal.signal(signal.SIGTERM, lambda s, f: shutdown_signal())
+
+    try:
+        # Wait until a shutdown signal
+        await stop_event.wait()
+    except KeyboardInterrupt:
+        if DEBUG: print("[main] KeyboardInterrupt received")
+        shutdown_signal()
+
+    if DEBUG: print("[main] cancelling audio task...")
+    audio_task.cancel()
+    try:
+        await audio_task
+    except asyncio.CancelledError:
+        if DEBUG: print("[main] audio task cancelled cleanly")
+
+    if DEBUG: print("[main] exiting")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        if DEBUG: print("[main] KeyboardInterrupt caught, exiting")
