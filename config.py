@@ -30,7 +30,7 @@ QUEUE_DB = "outbox.db"
 
 DEBUG = True
 
-MQTT_BROKER = "broker.emqx.io"   # or AWS IoT Core endpoint
+MQTT_BROKER = "node.kaatru.org"   # or AWS IoT Core endpoint
 MQTT_PORT = 1883
 MQTT_TOPIC = "racetrack/announcements"
 MQTT_USERNAME = None   # set if broker requires auth
@@ -38,3 +38,4 @@ MQTT_PASSWORD = None
 MQTT_QOS = 1           # QoS 0, 1, or 2
 
 DELIVERY_MODE = "MQTT"   # or "HTTP"
+VOCABULARY_NAME = "racetrack-classes"

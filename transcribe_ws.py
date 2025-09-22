@@ -1,10 +1,20 @@
-import asyncio, json, datetime, hmac, hashlib
-import aiohttp, sounddevice as sd, numpy as np
-from config import AWS_REGION, LANGUAGE_CODE, MIC_SAMPLE_RATE, STREAM_SAMPLE_RATE, FRAME_MS, DEBUG
+# transcribe_ws.py
+import asyncio
+import json
+import datetime
+import hmac
+import hashlib
+import queue
+import aiohttp
+import sounddevice as sd
+import numpy as np
 import boto3
 
+from config import AWS_REGION, LANGUAGE_CODE, MIC_SAMPLE_RATE, STREAM_SAMPLE_RATE, FRAME_MS, DEBUG
+
 def resample_pcm16(data, in_rate, out_rate):
-    if in_rate == out_rate: return data
+    if in_rate == out_rate:
+        return data
     duration = data.shape[0] / float(in_rate)
     out_len = int(round(duration * out_rate))
     resampled = np.interp(
@@ -14,6 +24,15 @@ def resample_pcm16(data, in_rate, out_rate):
     return resampled
 
 async def stream_audio(on_transcript):
+    """
+    Capture audio using sounddevice, push chunks to an asyncio-aware sender task
+    which transmits them to the Transcribe websocket.
+    """
+
+    # thread-safe queue used by sounddevice callback (runs in a different thread)
+    audio_q = queue.Queue()
+
+    # get AWS credentials and build signed URL
     session = boto3.session.Session()
     creds = session.get_credentials().get_frozen_credentials()
     service = "transcribe"
@@ -46,22 +65,82 @@ async def stream_audio(on_transcript):
 
     signed_url = sign_request()
 
+    async def mic_sender(ws):
+        """Async task that pulls raw pcm chunks from audio_q and sends them via ws."""
+        loop = asyncio.get_running_loop()
+        try:
+            while True:
+                # wait for next chunk in a thread so we don't block the event loop
+                chunk = await loop.run_in_executor(None, audio_q.get)
+                if chunk is None:
+                    # sentinel for shutdown
+                    if DEBUG: print("[mic_sender] got shutdown sentinel")
+                    break
+                try:
+                    await ws.send_bytes(chunk)
+                    if DEBUG: print("[mic_sender] sent chunk len", len(chunk))
+                except Exception as e:
+                    if DEBUG: print("[mic_sender] send failed", e)
+                    # if send fails, requeue minimally or break
+                    # requeue can be dangerous if socket is dead; break to let caller handle
+                    break
+        except asyncio.CancelledError:
+            if DEBUG: print("[mic_sender] cancelled")
+            raise
+
     async with aiohttp.ClientSession() as session:
         async with session.ws_connect(signed_url, timeout=10) as ws:
             if DEBUG: print("[transcribe] connected")
-            # start mic
-            def callback(indata, frames, time_info, status):
-                mono = (indata[:,0] * 32767).astype(np.int16)
-                resampled = resample_pcm16(mono, MIC_SAMPLE_RATE, STREAM_SAMPLE_RATE)
-                ws.send_bytes(resampled.tobytes())
 
-            with sd.InputStream(samplerate=MIC_SAMPLE_RATE, channels=1, dtype="float32", callback=callback):
-                async for msg in ws:
-                    if msg.type == aiohttp.WSMsgType.TEXT:
-                        data = json.loads(msg.data)
-                        if "Transcript" in data:
-                            for r in data["Transcript"]["Results"]:
-                                if not r["IsPartial"] and r["Alternatives"]:
-                                    text = r["Alternatives"][0]["Transcript"]
-                                    ts = datetime.datetime.utcnow().isoformat() + "Z"
-                                    await on_transcript(text, ts)
+            # sounddevice callback (runs in audio thread)
+            def callback(indata, frames, time_info, status):
+                # indata is float32 in [-1,1] typically; convert to int16 PCM range
+                try:
+                    mono = (indata[:, 0] * 32767).astype(np.int16)
+                except Exception:
+                    # if channels==1, indata can be 1-D; handle gracefully
+                    mono = (np.asarray(indata).flatten() * 32767).astype(np.int16)
+                resampled = resample_pcm16(mono, MIC_SAMPLE_RATE, STREAM_SAMPLE_RATE)
+                audio_q.put(resampled.tobytes())
+                if DEBUG:
+                    try:
+                        print("[mic cb] frames", frames, "resampled len", len(resampled))
+                    except Exception:
+                        pass
+
+            # start the sender task before opening mic to ensure ready to send
+            sender_task = asyncio.create_task(mic_sender(ws))
+
+            # open the input stream (this blocks only the context, callback runs on audio thread)
+            try:
+                # with sd.InputStream(samplerate=MIC_SAMPLE_RATE, channels=1, dtype="float32", callback=callback):
+                MIC_DEVICE_INDEX=0
+                with sd.InputStream(device=MIC_DEVICE_INDEX, samplerate=MIC_SAMPLE_RATE, channels=1, dtype="float32", callback=callback):
+                    if DEBUG:
+                        dev = sd.query_devices(MIC_DEVICE_INDEX)
+                        print("[mic] using device:", dev['name'], "channels:", dev['max_input_channels'], "rate:", MIC_SAMPLE_RATE)
+                    # consume websocket messages while mic is active
+                    async for msg in ws:
+                        if msg.type == aiohttp.WSMsgType.TEXT:
+                            data = json.loads(msg.data)
+                            if "Transcript" in data:
+                                for r in data["Transcript"]["Results"]:
+                                    if not r.get("IsPartial") and r.get("Alternatives"):
+                                        text = r["Alternatives"][0]["Transcript"]
+                                        ts = datetime.datetime.datetime.utcnow().isoformat() + "Z"
+                                        await on_transcript(text, ts)
+                        elif msg.type == aiohttp.WSMsgType.ERROR:
+                            dev = sd.query_devices(MIC_DEVICE_INDEX)
+                            if DEBUG: print("[mic] using device:", dev['name'], "channels:", dev['max_input_channels'])
+                            break
+            finally:
+                # shutdown: tell sender to stop and cancel task
+                audio_q.put(None)  # sentinel
+                await asyncio.sleep(0)  # let event loop cycle
+                if not sender_task.done():
+                    sender_task.cancel()
+                    try:
+                        await sender_task
+                    except asyncio.CancelledError:
+                        if DEBUG: print("[mic_sender] cancelled on shutdown")
+                if DEBUG: print("[transcribe] connection closed")
