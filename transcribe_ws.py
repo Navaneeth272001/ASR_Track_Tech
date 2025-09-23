@@ -163,7 +163,7 @@ def resample_pcm16(data, in_rate, out_rate):
 # ----------------------------
 async def stream_audio(on_transcript):
     audio_q = asyncio.Queue()
-    MIC_DEVICE_INDEX = 0
+    MIC_DEVICE_INDEX = 1
 
     session = boto3.session.Session()
     creds = session.get_credentials().get_frozen_credentials()
