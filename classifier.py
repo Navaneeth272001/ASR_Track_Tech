@@ -52,6 +52,7 @@ def build_messages(transcript, timestamp):
     for cls in classes:
         for intent in intents:
             if should_send(cls, intent):
+                class_id = CLASS_MAP[cls]["id"]
                 if intent == "CLASS_TO_LANES":
                     text = f"{cls} to the lanes"
                 elif intent == "CLASS_STANDBY":
@@ -70,7 +71,8 @@ def build_messages(transcript, timestamp):
                     text = transcript  # fallback
                 
                 msgs.append({
-                    "class_id": cls,
+                    "class_id": class_id,
+                    "class_name": cls,
                     "intent": intent,
                     "transcription": transcript,
                     "message_text": text,
