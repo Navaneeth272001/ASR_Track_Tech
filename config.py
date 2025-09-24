@@ -6,75 +6,53 @@ MIC_SAMPLE_RATE = 44100   # your laptop mic is usually 44.1k
 STREAM_SAMPLE_RATE = 16000  # Amazon Transcribe standard
 FRAME_MS = 20
 
-# Class definitions with aliases
-# CLASS_MAP = {
-#     # Existing drag race style
-#     "amateur": ["amateur", "amateurs"],
-#     "pro": ["pro", "pros", "professional"],
-#     "junior": ["junior", "juniors"],
-
-#     # New race-track categories
-#     "safety_car": ["safety car", "pace car"],
-#     "medical_car": ["medical car", "ambulance"],
-#     "marshal": ["marshal", "marshals", "track official"],
-#     "spectators": ["spectator", "spectators", "audience", "fans"],
-#     "weather": ["rain", "storm", "wet track", "dry track"],
-#     "winner": ["winner", "champion", "podium", "first place"],
-# }
-
-# # Intents
-# INTENT_PATTERNS = {
-#     "CLASS_TO_LANES": ["to the lanes", "proceed to the lanes", "report to the lanes"],
-#     "CLASS_STANDBY": ["standby", "get ready", "prepare"],
-#     "RACE_CONTROL": [
-#         "blue flag", "yellow flag", "red flag",
-#         "safety car", "virtual safety car",
-#         "under investigation"
-#     ],
-#     "PIT_STRATEGY": ["box", "pit", "tire", "strategy", "stay out"],
-#     "INCIDENT": ["crash", "accident", "stopped", "fire", "debris"],
-#     "RACE_END": ["checkered flag", "winner", "podium", "end of race", "race complete"],
-#     "GENERAL_INFO": ["attention", "briefing", "announcement", "spectators"],
-# }
-
 CLASS_MAP = {
     "Stock Eliminator": {
         "id": 0,
-        "aliases": ["stock eliminator", "stk elim", "stk elim.", "stock elim"]
+        "aliases": ["stock eliminator", "stk elim", "stk elim.", "stock elim", "stock"]
     },
-    "Super Pro": {
+    "Super Stock": {
         "id": 1,
-        "aliases": ["super pro", "s pro", "su pro", "supro"]
+        "aliases": ["super stock", "s stock", "ss"]
     },
-    "Junior Dragster": {
+    "Super Street": {
         "id": 2,
-        "aliases": ["junior dragster", "jr dragster", "junior drag", "jr drag"]
+        "aliases": ["super street", "s street", "sst"]
+    },
+    "Super Gas": {
+        "id": 3,
+        "aliases": ["super gas", "s gas", "sg"]
     },
     "Pro ET": {
-        "id": 3,
-        "aliases": ["pro et", "pro e t", "proet"]
-    },
-    "Sportsman": {
-        "id": 4,
-        "aliases": ["sportsman", "sports man", "sportzman"]
-    },
-    "Top Dragster": {
         "id": 5,
-        "aliases": ["top dragster", "td", "top drg"]
+        "aliases": ["ET", "ProET"]
+    },
+    "Super Pro": {
+        "id": 5,
+        "aliases": ["superpro", "su pro", "supro", "s pro", "spro"]
     },
     "Super Comp": {
         "id": 6,
-        "aliases": ["super comp", "super competition", "s comp"]
+        "aliases": ["super comp", "super competition", "s comp", "sc"]
     },
-    "Street": {
+    "Comp Eliminator": {
         "id": 7,
-        "aliases": ["street", "street class"]
+        "aliases": ["comp eliminator", "competition eliminator", "comp", "ce"]
+    },
+    "Top Dragster": {
+        "id": 8,
+        "aliases": ["top dragster", "td", "top drg"]
     },
     "Top Sportsman": {
-        "id": 8,
+        "id": 9,
         "aliases": ["top sportsman", "ts", "top sportzman"]
+    },
+    "General": {
+        "id": 10,
+        "aliases": ["Audience", "public", "spectators", "fans", "everyone"]
     }
 }
+
 
 # ----------------------------
 # Intent patterns
@@ -93,6 +71,16 @@ INTENT_PATTERNS = {
         "on deck",
         "be ready",
         "please be on standby"
+    ],
+    "GENERAL_ANNOUNCEMENT": [
+        "attention",
+        "announcement",
+        "briefing",
+        "spectators",
+        "fans",
+        "everyone",
+        "audience",
+        "public"
     ]
 }
 
@@ -107,7 +95,7 @@ QUEUE_DB = "outbox.db"
 
 DEBUG = True
 
-MQTT_BROKER = "node.kaatru.org"   # or AWS IoT Core endpoint
+MQTT_BROKER = "54.152.201.16"   # or AWS IoT Core endpoint
 MQTT_PORT = 1883
 MQTT_TOPIC = "racetrack/announcements"
 MQTT_USERNAME = None   # set if broker requires auth
