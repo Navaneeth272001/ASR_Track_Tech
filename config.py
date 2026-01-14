@@ -1,62 +1,137 @@
+"""
+config.py - Centralized configuration with dynamic class loading
+
+This module now loads classes from a JSON file (class_config.json) and
+supports hot-reloading of the class map via MQTT.
+"""
+
+import json
+from pathlib import Path
+import threading
+
+# ===========================
+# AWS Transcribe Configuration
+# ===========================
 AWS_REGION = "us-east-1"
 LANGUAGE_CODE = "en-US"
 
-# Mic / audio
-MIC_SAMPLE_RATE = 44100   # your laptop mic is usually 44.1k
+# ===========================
+# Audio Configuration
+# ===========================
+MIC_SAMPLE_RATE = 44100  # Your laptop mic is usually 44.1k
 STREAM_SAMPLE_RATE = 16000  # Amazon Transcribe standard
 FRAME_MS = 20
 
-CLASS_MAP = {
-    "Stock Eliminator": {
-        "id": 0,
-        "aliases": ["stock eliminator", "stk elim", "stk elim.", "stock elim", "stock"]
-    },
-    "Super Stock": {
-        "id": 1,
-        "aliases": ["super stock", "s stock", "ss"]
-    },
-    "Super Street": {
-        "id": 2,
-        "aliases": ["super street", "s street", "sst"]
-    },
-    "Super Gas": {
-        "id": 3,
-        "aliases": ["super gas", "s gas", "sg"]
-    },
-    "Pro ET": {
-        "id": 5,
-        "aliases": ["ET", "ProET"]
-    },
-    "Super Pro": {
-        "id": 5,
-        "aliases": ["superpro", "su pro", "supro", "s pro", "spro"]
-    },
-    "Super Comp": {
-        "id": 6,
-        "aliases": ["super comp", "super competition", "s comp", "sc"]
-    },
-    "Comp Eliminator": {
-        "id": 7,
-        "aliases": ["comp eliminator", "competition eliminator", "comp", "ce"]
-    },
-    "Top Dragster": {
-        "id": 8,
-        "aliases": ["top dragster", "td", "top drg"]
-    },
-    "Top Sportsman": {
-        "id": 9,
-        "aliases": ["top sportsman", "ts", "top sportzman"]
-    },
-    "General": {
-        "id": 10,
-        "aliases": ["Audience", "public", "spectators", "fans", "everyone"]
+# ===========================
+# Class Map Configuration (Dynamic)
+# ===========================
+CLASS_CONFIG_PATH = Path("class_config.json")
+
+_class_map = {}
+_class_map_lock = threading.RLock()
+
+
+def load_class_config(path: Path = None) -> list:
+    """
+    Load class configuration from JSON file.
+    
+    Expected JSON structure:
+    {
+      "classes": [
+        {"id": 0, "name": "Class Name", "aliases": ["alias1", "alias2"]},
+        ...
+      ]
     }
-}
+    """
+    if path is None:
+        path = CLASS_CONFIG_PATH
+    
+    if not path.exists():
+        raise FileNotFoundError(f"Class config JSON not found: {path}")
+    
+    with path.open("r", encoding="utf-8") as f:
+        data = json.load(f)
+    
+    return data.get("classes", [])
 
 
-# ----------------------------
-# Intent patterns
-# ----------------------------
+def build_classmap(classes: list) -> dict:
+    """
+    Convert list of {id, name, aliases} into CLASS_MAP shape:
+    {
+      "Class Name": {"id": 0, "aliases": ["alias1", "alias2"]},
+      ...
+    }
+    """
+    classmap = {}
+    for cls in classes:
+        cid = cls.get("id")
+        name = cls.get("name")
+        aliases = cls.get("aliases", [])
+        
+        if name is None or cid is None:
+            continue
+        
+        classmap[name] = {
+            "id": cid,
+            "aliases": aliases,
+        }
+    return classmap
+
+
+def initialize_classmap():
+    """Initialize CLASS_MAP at import time from default config file."""
+    global _class_map
+    try:
+        classes = load_class_config()
+        _class_map = build_classmap(classes)
+        if DEBUG:
+            print(f"[config] loaded {len(_class_map)} classes from {CLASS_CONFIG_PATH}")
+    except FileNotFoundError as e:
+        print(f"[config] WARNING: {e}")
+        _class_map = {}
+
+
+def get_classmap() -> dict:
+    """Get current CLASS_MAP (thread-safe)."""
+    with _class_map_lock:
+        return dict(_class_map)
+
+
+def update_classmap_from_json(json_payload: dict):
+    """
+    Update CLASS_MAP from a JSON payload.
+    
+    Payload format:
+    {
+      "classes": [
+        {"id": 0, "name": "Class Name", "aliases": ["alias1", "alias2"]},
+        ...
+      ]
+    }
+    """
+    global _class_map
+    try:
+        classes = json_payload.get("classes", [])
+        with _class_map_lock:
+            _class_map = build_classmap(classes)
+        if DEBUG:
+            print(f"[config] updated CLASS_MAP with {len(_class_map)} classes")
+            print(f"[config] classes: {list(_class_map.keys())}")
+    except Exception as e:
+        if DEBUG:
+            print(f"[config] failed to update CLASS_MAP: {e}")
+
+
+# Initialize on import
+initialize_classmap()
+
+# Expose as module-level convenience (for classifier.py compatibility)
+CLASS_MAP = _class_map
+
+# ===========================
+# Intent Patterns
+# ===========================
 INTENT_PATTERNS = {
     "CLASS_TO_LANES": [
         "to the lanes",
@@ -84,23 +159,28 @@ INTENT_PATTERNS = {
     ]
 }
 
-# Delivery endpoint (replace with your API / SNS / FCM gateway)
+# ===========================
+# Delivery Configuration
+# ===========================
 PUSH_ENDPOINT = "https://YOUR_BACKEND/notify"
-
-# Debounce duplicate announcements
 DEBOUNCE_SECONDS = 180
-
-# Local persistence
 QUEUE_DB = "outbox.db"
 
-DEBUG = True
-
-MQTT_BROKER = "54.152.201.16"   # or AWS IoT Core endpoint
+# ===========================
+# MQTT Configuration
+# ===========================
+MQTT_BROKER = "54.152.201.16"  # or AWS IoT Core endpoint
 MQTT_PORT = 1883
 MQTT_TOPIC = "racetrack/announcements"
-MQTT_USERNAME = None   # set if broker requires auth
+MQTT_CONFIG_TOPIC = "racetrack/config/classes"  # Topic for config updates
+MQTT_USERNAME = None  # set if broker requires auth
 MQTT_PASSWORD = None
-MQTT_QOS = 1           # QoS 0, 1, or 2
+MQTT_QOS = 1  # QoS 0, 1, or 2
 
-DELIVERY_MODE = "MQTT"   # or "HTTP"
+DELIVERY_MODE = "MQTT"  # or "HTTP"
+
+# ===========================
+# Logging
+# ===========================
+DEBUG = True
 VOCABULARY_NAME = "racetrack-classes"
