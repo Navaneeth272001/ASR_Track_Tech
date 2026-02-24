@@ -100,7 +100,7 @@ def get_classmap() -> dict:
 
 def update_classmap_from_json(json_payload: dict):
     """
-    Update CLASS_MAP from a JSON payload.
+    Update CLASS_MAP from a JSON payload and persist to file.
     
     Payload format:
     {
@@ -115,12 +115,17 @@ def update_classmap_from_json(json_payload: dict):
         classes = json_payload.get("classes", [])
         with _class_map_lock:
             _class_map = build_classmap(classes)
+        
+        # Persist to disk
+        with CLASS_CONFIG_PATH.open("w", encoding="utf-8") as f:
+            json.dump(json_payload, f, indent=2)
+            
         if DEBUG:
-            print(f"[config] updated CLASS_MAP with {len(_class_map)} classes")
+            print(f"[config] updated and persisted CLASS_MAP with {len(_class_map)} classes")
             print(f"[config] classes: {list(_class_map.keys())}")
     except Exception as e:
         if DEBUG:
-            print(f"[config] failed to update CLASS_MAP: {e}")
+            print(f"[config] failed to update/persist CLASS_MAP: {e}")
 
 
 # Initialize on import
@@ -173,6 +178,7 @@ MQTT_BROKER = "54.152.201.16"  # or AWS IoT Core endpoint
 MQTT_PORT = 1883
 MQTT_TOPIC = "racetrack/announcements"
 MQTT_CONFIG_TOPIC = "racetrack/config/classes"  # Topic for config updates
+MQTT_CONFIG_REQUEST_TOPIC = "racetrack/config/request"  # Topic to request updates
 MQTT_USERNAME = None  # set if broker requires auth
 MQTT_PASSWORD = None
 MQTT_QOS = 1  # QoS 0, 1, or 2

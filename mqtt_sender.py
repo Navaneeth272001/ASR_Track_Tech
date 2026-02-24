@@ -12,6 +12,7 @@ import time
 import paho.mqtt.client as mqtt
 from config import (
     QUEUE_DB, MQTT_BROKER, MQTT_PORT, MQTT_TOPIC, MQTT_CONFIG_TOPIC,
+    MQTT_CONFIG_REQUEST_TOPIC,
     MQTT_USERNAME, MQTT_PASSWORD, MQTT_QOS, DEBUG
 )
 from config import update_classmap_from_json
@@ -33,6 +34,11 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(MQTT_CONFIG_TOPIC)
     if DEBUG:
         print(f"[mqtt] subscribed to {MQTT_CONFIG_TOPIC}")
+    
+    # Request latest config
+    client.publish(MQTT_CONFIG_REQUEST_TOPIC, "GET", qos=MQTT_QOS)
+    if DEBUG:
+        print(f"[mqtt] requested latest config on {MQTT_CONFIG_REQUEST_TOPIC}")
 
 
 def on_message(client, userdata, msg):
