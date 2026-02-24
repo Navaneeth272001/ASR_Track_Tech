@@ -10,6 +10,12 @@ from pathlib import Path
 import threading
 
 # ===========================
+# Logging & Debugging
+# ===========================
+DEBUG = True
+VOCABULARY_NAME = "racetrack-classes"
+
+# ===========================
 # AWS Transcribe Configuration
 # ===========================
 AWS_REGION = "us-east-1"
@@ -21,6 +27,7 @@ LANGUAGE_CODE = "en-US"
 MIC_SAMPLE_RATE = 44100  # Your laptop mic is usually 44.1k
 STREAM_SAMPLE_RATE = 16000  # Amazon Transcribe standard
 FRAME_MS = 20
+MIC_DEVICE_INDEX = None  # Set to an integer to lock to a specific device, or None for auto-detection
 
 # ===========================
 # Class Map Configuration (Dynamic)
@@ -185,8 +192,3 @@ MQTT_QOS = 1  # QoS 0, 1, or 2
 
 DELIVERY_MODE = "MQTT"  # or "HTTP"
 
-# ===========================
-# Logging
-# ===========================
-DEBUG = True
-VOCABULARY_NAME = "racetrack-classes"

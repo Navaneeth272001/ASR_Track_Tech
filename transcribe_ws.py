@@ -14,7 +14,10 @@ import sounddevice as sd
 import numpy as np
 import boto3
 
-from config import AWS_REGION, LANGUAGE_CODE, MIC_SAMPLE_RATE, STREAM_SAMPLE_RATE, FRAME_MS, DEBUG
+from config import (
+    AWS_REGION, LANGUAGE_CODE, MIC_SAMPLE_RATE, STREAM_SAMPLE_RATE, 
+    FRAME_MS, DEBUG, MIC_DEVICE_INDEX
+)
 
 # ----------------------------
 # Fixed EventStream Marshaller for AWS Transcribe
@@ -163,7 +166,41 @@ def resample_pcm16(data, in_rate, out_rate):
 # ----------------------------
 async def stream_audio(on_transcript):
     audio_q = asyncio.Queue()
-    MIC_DEVICE_INDEX = 0
+    
+    # Selection logic for microphone
+    target_mic = MIC_DEVICE_INDEX
+    
+    # Get all devices
+    devices = sd.query_devices()
+    
+    if target_mic is None:
+        # Auto-detect first device with input channels
+        for i, dev in enumerate(devices):
+            if dev['max_input_channels'] > 0:
+                target_mic = i
+                if DEBUG:
+                    print(f"[mic] auto-detected input device: {i} ({dev['name']})")
+                break
+    
+    if target_mic is None:
+        raise RuntimeError("No audio input devices found.")
+
+    # Validate selected device
+    try:
+        dev = sd.query_devices(target_mic)
+        if dev['max_input_channels'] == 0:
+            if DEBUG:
+                print(f"[mic] warning: selected device {target_mic} has 0 input channels. Falling back...")
+            # Fallback to first available
+            for i, d in enumerate(devices):
+                if d['max_input_channels'] > 0:
+                    target_mic = i
+                    dev = d
+                    break
+    except Exception as e:
+        if DEBUG:
+             print(f"[mic] error querying device {target_mic}: {e}")
+        raise
 
     session = boto3.session.Session()
     creds = session.get_credentials().get_frozen_credentials()
@@ -272,11 +309,10 @@ async def stream_audio(on_transcript):
             sender_task = asyncio.create_task(mic_sender(ws))
 
             try:
-                dev = sd.query_devices(MIC_DEVICE_INDEX)
                 if DEBUG:
-                    print("[mic] using device:", dev['name'], "channels:", dev['max_input_channels'], "rate:", MIC_SAMPLE_RATE)
+                    print("[mic] using device:", dev['name'], "index:", target_mic, "channels:", dev['max_input_channels'], "rate:", MIC_SAMPLE_RATE)
 
-                with sd.InputStream(device=MIC_DEVICE_INDEX,
+                with sd.InputStream(device=target_mic,
                                     samplerate=MIC_SAMPLE_RATE,
                                     channels=1,
                                     dtype="float32",
