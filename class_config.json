@@ -1,0 +1,620 @@
+{
+  "classes": [
+    {
+      "id": 1,
+      "name": "100 MPH Qualifier",
+      "aliases": [
+        "100 mph qualifier"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "5.35 Index",
+      "aliases": [
+        "5.35 index"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Alumni",
+      "aliases": [
+        "alumni"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Association Classes",
+      "aliases": [
+        "association classes"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Big Buck Electronics",
+      "aliases": [
+        "big buck electronics"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Big Wheel",
+      "aliases": [
+        "big wheel"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Blown Alcohol Funny Cars",
+      "aliases": [
+        "blown alcohol funny cars"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Box",
+      "aliases": [
+        "box"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Club Series",
+      "aliases": [
+        "club series"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "College",
+      "aliases": [
+        "college"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Comp Eliminator",
+      "aliases": [
+        "comp eliminator"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Cruise-In",
+      "aliases": [
+        "cruise-in"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Diesel",
+      "aliases": [
+        "diesel"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Donut Pit",
+      "aliases": [
+        "donut pit"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Drag Racing",
+      "aliases": [
+        "drag racing"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Dragster/Roadster",
+      "aliases": [
+        "dragster/roadster"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "ET Big Bucks",
+      "aliases": [
+        "et big bucks"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "ET Motorcycle",
+      "aliases": [
+        "et motorcycle"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Factory Stock Showdown",
+      "aliases": [
+        "factory stock showdown"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Footbrake",
+      "aliases": [
+        "footbrake"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Funny Car",
+      "aliases": [
+        "funny car"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Gasser",
+      "aliases": [
+        "gasser"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Group 1",
+      "aliases": [
+        "group 1"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Group 2",
+      "aliases": [
+        "group 2"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Grudge",
+      "aliases": [
+        "grudge"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Heads Up",
+      "aliases": [
+        "heads up"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Heavy",
+      "aliases": [
+        "heavy"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "High School",
+      "aliases": [
+        "high school"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Hole in the Hood",
+      "aliases": [
+        "hole in the hood"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Hot Rod",
+      "aliases": [
+        "hot rod"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Hot Rod 1",
+      "aliases": [
+        "hot rod 1"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Hot Rod 2",
+      "aliases": [
+        "hot rod 2"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Import",
+      "aliases": [
+        "import"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Inline/Flathead",
+      "aliases": [
+        "inline/flathead"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Jets",
+      "aliases": [
+        "jets"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Junior Dragster",
+      "aliases": [
+        "junior dragster"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Junior Dragsters",
+      "aliases": [
+        "junior dragsters"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Junior Street",
+      "aliases": [
+        "junior street"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Land of Leaders",
+      "aliases": [
+        "land of leaders"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Modern Muscle",
+      "aliases": [
+        "modern muscle"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Motorcycle",
+      "aliases": [
+        "motorcycle"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Mountain Motor Pro Stock",
+      "aliases": [
+        "mountain motor pro stock"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "No Box",
+      "aliases": [
+        "no box"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "No Time",
+      "aliases": [
+        "no time"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Non Electronics",
+      "aliases": [
+        "non electronics"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Nor Cal Drag Bikes",
+      "aliases": [
+        "nor cal drag bikes"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Open Drags",
+      "aliases": [
+        "open drags"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Open Test and Tune",
+      "aliases": [
+        "open test and tune"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Pickup",
+      "aliases": [
+        "pickup"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "Powderpuff",
+      "aliases": [
+        "powderpuff"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Pro",
+      "aliases": [
+        "pro"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Pro Mod",
+      "aliases": [
+        "pro mod"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "Pro Nostalgia",
+      "aliases": [
+        "pro nostalgia"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Pro Stock",
+      "aliases": [
+        "pro stock"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Pro Stock Motorcycle",
+      "aliases": [
+        "pro stock motorcycle"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Quick 16",
+      "aliases": [
+        "quick 16"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Real Steel",
+      "aliases": [
+        "real steel"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Run What You Brung",
+      "aliases": [
+        "run what you brung"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Sled/Bike",
+      "aliases": [
+        "sled/bike"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Sport Compact",
+      "aliases": [
+        "sport compact"
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Sportsman",
+      "aliases": [
+        "sportsman"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Stick Shift",
+      "aliases": [
+        "stick shift"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Stock Eliminator",
+      "aliases": [
+        "stock eliminator"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Street ET",
+      "aliases": [
+        "street et"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Street Legal",
+      "aliases": [
+        "street legal"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Street Machine",
+      "aliases": [
+        "street machine"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Street Machine 1",
+      "aliases": [
+        "street machine 1"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Street Machine 2",
+      "aliases": [
+        "street machine 2"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Street Rod",
+      "aliases": [
+        "street rod"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "Super Comp",
+      "aliases": [
+        "super comp"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Super Comp Association",
+      "aliases": [
+        "super comp association"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Super Gas",
+      "aliases": [
+        "super gas"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Super Pro",
+      "aliases": [
+        "super pro"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Super Shifter",
+      "aliases": [
+        "super shifter"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Super Stock",
+      "aliases": [
+        "super stock"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Super Street",
+      "aliases": [
+        "super street"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Test and Tune",
+      "aliases": [
+        "test and tune"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "Top Alcohol Dragster",
+      "aliases": [
+        "top alcohol dragster"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Top Alcohol Funny Car",
+      "aliases": [
+        "top alcohol funny car"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "Top Dragster",
+      "aliases": [
+        "top dragster"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Top Fuel",
+      "aliases": [
+        "top fuel"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Top Gas",
+      "aliases": [
+        "top gas"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Top Sportsman",
+      "aliases": [
+        "top sportsman"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "Trophy",
+      "aliases": [
+        "trophy"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "Truck",
+      "aliases": [
+        "truck"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Two-Step Competition",
+      "aliases": [
+        "two-step competition"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "Volkswagen",
+      "aliases": [
+        "volkswagen"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "West Coast Outlaws Heads Up",
+      "aliases": [
+        "west coast outlaws heads up"
+      ]
+    }
+  ]
+}

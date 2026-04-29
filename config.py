@@ -142,7 +142,13 @@ initialize_classmap()
 CLASS_MAP = _class_map
 
 # ===========================
-# Intent Patterns
+# LLM Intent Framing Configuration
+# ===========================
+USE_LLM_FRAMING = False  # Set to True to use AWS Bedrock (Claude 3 Haiku) for intelligent intent framing
+BEDROCK_MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
+
+# ===========================
+# Intent Patterns (Fallback if LLM is disabled)
 # ===========================
 INTENT_PATTERNS = {
     "CLASS_TO_LANES": [
@@ -150,14 +156,28 @@ INTENT_PATTERNS = {
         "make your way to",
         "head to",
         "to the staging lanes",
-        "please to the lanes"
+        "please to the lanes",
+        "to the grid",
+        "bring it to the lanes",
+        "proceed to staging",
+        "report to staging",
+        "pull up to",
+        "we need you in the lanes",
+        "time to line up",
+        "come on down to the staging area",
+        "we are calling"
     ],
     "CLASS_STANDBY": [
         "standby",
         "be on standby",
         "on deck",
         "be ready",
-        "please be on standby"
+        "please be on standby",
+        "hold your positions",
+        "listen for the call",
+        "in the hole",
+        "prepare to stage",
+        "get ready"
     ],
     "GENERAL_ANNOUNCEMENT": [
         "attention",
@@ -167,7 +187,10 @@ INTENT_PATTERNS = {
         "fans",
         "everyone",
         "audience",
-        "public"
+        "public",
+        "listen up",
+        "drivers meeting",
+        "notice to all"
     ]
 }
 

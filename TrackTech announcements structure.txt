@@ -1,0 +1,532 @@
+{
+  "version": "tracktech-dragstrip-seed-v1",
+  "notes": {
+    "source_status_values": [
+      "confirmed_public_schedule",
+      "seeded_for_matching"
+    ],
+    "match_strategy": [
+      "exact",
+      "alias",
+      "partial",
+      "phonetic",
+      "contextual_intent"
+    ]
+  },
+  "shared_class_sets": {
+    "nhra_national_event_core": [
+      "Top Fuel",
+      "Funny Car",
+      "Pro Stock",
+      "Pro Stock Motorcycle",
+      "Pro Mod",
+      "Factory Stock Showdown",
+      "Mountain Motor Pro Stock",
+      "Top Alcohol Dragster",
+      "Top Alcohol Funny Car",
+      "Comp Eliminator",
+      "Super Stock",
+      "Stock Eliminator",
+      "Super Comp",
+      "Super Gas",
+      "Super Street",
+      "Top Dragster",
+      "Top Sportsman"
+    ],
+    "nhra_divisional_core": [
+      "Top Alcohol Dragster",
+      "Top Alcohol Funny Car",
+      "Comp Eliminator",
+      "Super Stock",
+      "Stock Eliminator",
+      "Super Comp",
+      "Super Gas",
+      "Super Street",
+      "Top Dragster",
+      "Top Sportsman"
+    ],
+    "nhra_summit_series_core": [
+      "Super Pro",
+      "Pro",
+      "Sportsman",
+      "Motorcycle"
+    ],
+    "nhra_jr_core": [
+      "Junior Dragster",
+      "Junior Street"
+    ],
+    "local_bracket_core": [
+      "Super Pro",
+      "Pro",
+      "Sportsman",
+      "Motorcycle",
+      "High School",
+      "Footbrake",
+      "Box",
+      "No Box",
+      "Trophy",
+      "Test and Tune"
+    ]
+  },
+  "tracks": [
+    {
+      "track_name": "Sonoma Dragstrip",
+      "facility_name": "Sonoma Raceway",
+      "state": "CA",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "NHRA National Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["DENSO NHRA Sonoma Nationals"],
+          "class_set_refs": ["nhra_national_event_core"]
+        },
+        {
+          "family_name": "NHRA Division 7 / Lucas Oil Sportsman",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["NHRA Division 7 Drag Races"],
+          "class_set_refs": ["nhra_divisional_core"]
+        },
+        {
+          "family_name": "Sonoma Drags",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Sonoma Drags"],
+          "class_set_refs": ["local_bracket_core"],
+          "custom_classes": [
+            "Street Legal",
+            "College",
+            "Open Test and Tune"
+          ]
+        },
+        {
+          "family_name": "Bracket Drags",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Bracket Drags"],
+          "custom_classes": [
+            "Association Classes",
+            "Sportsman",
+            "Motorcycle",
+            "Junior Dragster",
+            "Pro",
+            "Super Pro",
+            "High School",
+            "Trophy"
+          ]
+        }
+      ]
+    },
+    {
+      "track_name": "Woodburn Dragstrip",
+      "facility_name": "Woodburn Dragstrip",
+      "state": "OR",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "NHRA Lucas Oil Sportsman",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["NHRA Lucas Oil Series"],
+          "class_set_refs": ["nhra_divisional_core"]
+        },
+        {
+          "family_name": "Land of the Leaders / ET Series",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Sunoco Race Fuels ET Series"],
+          "custom_classes": [
+            "Super Pro",
+            "Pro",
+            "Sportsman",
+            "ET Motorcycle",
+            "High School",
+            "Junior Street",
+            "Junior Dragster",
+            "Test and Tune"
+          ]
+        },
+        {
+          "family_name": "NHRA Hot Rod Heritage Series",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": [
+            "NHRA Hot Rod Heritage Series",
+            "Nostalgia Nationals"
+          ],
+          "custom_classes": [
+            "Funny Car",
+            "Group 1",
+            "Group 2",
+            "Top Gas",
+            "Hot Rod",
+            "Street Machine",
+            "Street Rod",
+            "Inline/Flathead",
+            "Stick Shift",
+            "Gasser",
+            "Pro Nostalgia",
+            "Dragster/Roadster"
+          ]
+        },
+        {
+          "family_name": "Street / Fun Drags",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": [
+            "Friday Fun Drags",
+            "Thursday Street Legal Cruise-In"
+          ],
+          "custom_classes": [
+            "Street Legal",
+            "Cruise-In",
+            "100 MPH Qualifier",
+            "Test and Tune"
+          ]
+        },
+        {
+          "family_name": "Specialty Race Series",
+          "source_status": "confirmed_public_schedule",
+          "custom_classes": [
+            "Modern Muscle",
+            "Pickup",
+            "Volkswagen",
+            "Super Shifter",
+            "Powderpuff",
+            "Hole in the Hood",
+            "Sport Compact",
+            "Diesel"
+          ]
+        },
+        {
+          "family_name": "Promoter Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Import Face-Off"],
+          "custom_classes": []
+        }
+      ]
+    },
+    {
+      "track_name": "Pomona Dragstrip",
+      "facility_name": "In-N-Out Burger Pomona Dragstrip",
+      "state": "CA",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "NHRA National Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": [
+            "Lucas Oil NHRA Winternationals",
+            "In-N-Out Burger NHRA Finals"
+          ],
+          "class_set_refs": ["nhra_national_event_core"]
+        },
+        {
+          "family_name": "Local / Special Track Operation",
+          "source_status": "seeded_for_matching",
+          "event_examples": [],
+          "class_set_refs": ["local_bracket_core"]
+        }
+      ]
+    },
+    {
+      "track_name": "Barona Dragstrip",
+      "facility_name": "Barona 1/8-Mile Drags",
+      "state": "CA",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "NHRA Summit Series / Local Bracket",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["NHRA Summit Series"],
+          "class_set_refs": ["nhra_summit_series_core", "nhra_jr_core"]
+        },
+        {
+          "family_name": "Street Legal Friday Nights",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Street Legal Friday Nights"],
+          "custom_classes": [
+            "Street Legal",
+            "Run What You Brung",
+            "Test and Tune"
+          ]
+        },
+        {
+          "family_name": "NHRA Division 7 Junior Championship Series",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Pacific Division Junior Championship Series"],
+          "class_set_refs": ["nhra_jr_core"]
+        },
+        {
+          "family_name": "Heads-Up / Import / Grudge",
+          "source_status": "seeded_for_matching",
+          "event_examples": [],
+          "custom_classes": [
+            "Heads Up",
+            "Import",
+            "Grudge",
+            "No Time"
+          ]
+        }
+      ]
+    },
+    {
+      "track_name": "Redding Dragstrip",
+      "facility_name": "Redding Motorsports Park",
+      "state": "CA",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "Team Redding Points / Summit Style Bracket",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Team Redding Points Races"],
+          "custom_classes": [
+            "Super Pro",
+            "Pro",
+            "Sportsman",
+            "Motorcycle",
+            "Junior Dragster"
+          ]
+        },
+        {
+          "family_name": "NHRA Junior / Summit Special Program",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": [
+            "NHRA Junior Divisional Series",
+            "Summit King of the Track Runoff"
+          ],
+          "class_set_refs": ["nhra_jr_core"]
+        },
+        {
+          "family_name": "NHRA North ET Finals",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["NHRA North ET Finals"],
+          "class_set_refs": ["nhra_summit_series_core", "nhra_jr_core"]
+        },
+        {
+          "family_name": "Signature Event / Heads-Up / Big Bucks",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Kool April Drags", "Redding Riches"],
+          "custom_classes": [
+            "Jets",
+            "Blown Alcohol Funny Cars",
+            "West Coast Outlaws Heads Up",
+            "5.35 Index",
+            "Real Steel",
+            "ET Big Bucks",
+            "Nor Cal Drag Bikes",
+            "Quick 16",
+            "Junior Dragsters"
+          ]
+        }
+      ]
+    },
+    {
+      "track_name": "Top Gun Raceway",
+      "facility_name": "Top Gun Dragstrip",
+      "state": "NV",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "NHRA Pacific Division National Open",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["National Open"],
+          "class_set_refs": ["nhra_divisional_core", "nhra_summit_series_core"]
+        },
+        {
+          "family_name": "NHRA Division 7 Junior Championship Series",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Pacific Division Junior Championship Series"],
+          "class_set_refs": ["nhra_jr_core"]
+        },
+        {
+          "family_name": "Season Racing / Local Program",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Top Gun Dragstrip Racing Season"],
+          "class_set_refs": ["local_bracket_core"]
+        }
+      ]
+    },
+    {
+      "track_name": "Tucson Dragstrip",
+      "facility_name": "Tucson Dragway",
+      "state": "AZ",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "Team Tucson / NHRA Summit Series",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Team Tucson"],
+          "custom_classes": [
+            "Pro",
+            "Super Pro",
+            "Sportsman",
+            "Motorcycle",
+            "High School",
+            "Junior Street",
+            "Junior Dragster",
+            "Big Wheel"
+          ]
+        },
+        {
+          "family_name": "NHRA Division 7 Points / Open",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Pacific Division points dates at Tucson"],
+          "class_set_refs": ["nhra_divisional_core", "nhra_jr_core"]
+        },
+        {
+          "family_name": "Street / Test / Grudge",
+          "source_status": "seeded_for_matching",
+          "event_examples": [],
+          "custom_classes": [
+            "Street Legal",
+            "Test and Tune",
+            "Grudge"
+          ]
+        }
+      ]
+    },
+    {
+      "track_name": "Pacific Raceways",
+      "facility_name": "Pacific Raceways",
+      "state": "WA",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "NHRA National Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["NHRA Northwest Nationals"],
+          "class_set_refs": ["nhra_national_event_core"]
+        },
+        {
+          "family_name": "ET Drag / Land of Leaders",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["A Street ET Series", "Land of Leaders"],
+          "custom_classes": [
+            "Street ET",
+            "Land of Leaders",
+            "Super Street",
+            "Super Comp Association",
+            "Big Buck Electronics",
+            "Non Electronics"
+          ]
+        },
+        {
+          "family_name": "Nostalgia Drags",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Nostalgia Drags & Car Show"],
+          "custom_classes": [
+            "Street Machine 1",
+            "Street Machine 2",
+            "Hot Rod 1",
+            "Hot Rod 2",
+            "Stick Shift",
+            "Dragster/Roadster"
+          ]
+        },
+        {
+          "family_name": "Promoter Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Import Face Off"],
+          "custom_classes": []
+        }
+      ]
+    },
+    {
+      "track_name": "Wild Horse Pass Raceway Park",
+      "facility_name": "Firebird Motorsports Park at Wild Horse Pass",
+      "state": "AZ",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "NHRA National Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["NHRA Arizona Nationals"],
+          "class_set_refs": ["nhra_national_event_core"]
+        },
+        {
+          "family_name": "Friday Night Drags",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Friday Night Drags"],
+          "custom_classes": [
+            "Run What You Brung",
+            "Street Legal",
+            "Open Drags",
+            "Test and Tune"
+          ]
+        },
+        {
+          "family_name": "NHRA Division 7 Junior Championship Series",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Pacific Division Junior Championship Series"],
+          "class_set_refs": ["nhra_jr_core"]
+        },
+        {
+          "family_name": "Promoter / Festival Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Sanctuary"],
+          "custom_classes": [
+            "Drag Racing",
+            "Donut Pit",
+            "Two-Step Competition"
+          ]
+        }
+      ]
+    },
+    {
+      "track_name": "Firebird Raceway (Boise)",
+      "facility_name": "Firebird Raceway",
+      "state": "ID",
+      "sanctioning_bodies": ["NHRA"],
+      "event_families": [
+        {
+          "family_name": "Gold Cup / Bracket Program",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Gold Cup Season Opener"],
+          "custom_classes": [
+            "Super Pro",
+            "Pro",
+            "Heavy",
+            "Sportsman",
+            "Sled/Bike"
+          ]
+        },
+        {
+          "family_name": "Club Challenge Series",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["Club Challenge Series"],
+          "custom_classes": [
+            "Club Series"
+          ]
+        },
+        {
+          "family_name": "High School / Alumni / Street Legal",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": [
+            "Spring High School, Alumni & Street Legal Championships",
+            "Fall High School, Alumni & Street Legal Series"
+          ],
+          "custom_classes": [
+            "High School",
+            "Alumni",
+            "Street Legal"
+          ]
+        },
+        {
+          "family_name": "Major Specialty Event",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": [
+            "Hot Truck Nationals",
+            "Nightfire Nationals",
+            "Midnight Grudge Drags"
+          ],
+          "custom_classes": [
+            "Truck",
+            "Grudge",
+            "Street Legal"
+          ]
+        },
+        {
+          "family_name": "NHRA Summit ET Finals",
+          "source_status": "confirmed_public_schedule",
+          "event_examples": ["NHRA Summit E.T. Finals"],
+          "class_set_refs": ["nhra_summit_series_core", "nhra_jr_core"]
+        }
+      ]
+    }
+  ]
+}
