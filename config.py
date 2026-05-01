@@ -199,6 +199,7 @@ INTENT_PATTERNS = {
 # ===========================
 PUSH_ENDPOINT = "https://YOUR_BACKEND/notify"
 DEBOUNCE_SECONDS = 180
+DEDUP_WINDOW_MS = 5000  # Utterance-level deduplication window in milliseconds
 QUEUE_DB = "outbox.db"
 
 # ===========================

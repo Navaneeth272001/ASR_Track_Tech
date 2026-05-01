@@ -3,618 +3,442 @@
     {
       "id": 1,
       "name": "100 MPH Qualifier",
-      "aliases": [
-        "100 mph qualifier"
-      ]
+      "aliases": ["100 mph qualifier", "hundred mph qualifier", "100 mph"]
     },
     {
       "id": 2,
       "name": "5.35 Index",
-      "aliases": [
-        "5.35 index"
-      ]
+      "aliases": ["5.35 index", "five thirty five index", "5 35 index"]
     },
     {
       "id": 3,
       "name": "Alumni",
-      "aliases": [
-        "alumni"
-      ]
+      "aliases": ["alumni"]
     },
     {
       "id": 4,
       "name": "Association Classes",
-      "aliases": [
-        "association classes"
-      ]
+      "aliases": ["association classes", "association"]
     },
     {
       "id": 5,
       "name": "Big Buck Electronics",
-      "aliases": [
-        "big buck electronics"
-      ]
+      "aliases": ["big buck electronics", "big buck", "big bucks electronics"]
     },
     {
       "id": 6,
       "name": "Big Wheel",
-      "aliases": [
-        "big wheel"
-      ]
+      "aliases": ["big wheel"]
     },
     {
       "id": 7,
       "name": "Blown Alcohol Funny Cars",
-      "aliases": [
-        "blown alcohol funny cars"
-      ]
+      "aliases": ["blown alcohol funny cars", "blown alcohol", "alcohol funny cars"]
     },
     {
       "id": 8,
       "name": "Box",
-      "aliases": [
-        "box"
-      ]
+      "aliases": ["box", "box class"]
     },
     {
       "id": 9,
       "name": "Club Series",
-      "aliases": [
-        "club series"
-      ]
+      "aliases": ["club series"]
     },
     {
       "id": 10,
       "name": "College",
-      "aliases": [
-        "college"
-      ]
+      "aliases": ["college"]
     },
     {
       "id": 11,
       "name": "Comp Eliminator",
-      "aliases": [
-        "comp eliminator"
-      ]
+      "aliases": ["comp eliminator", "comp", "competition eliminator"]
     },
     {
       "id": 12,
       "name": "Cruise-In",
-      "aliases": [
-        "cruise-in"
-      ]
+      "aliases": ["cruise-in", "cruise in", "cruisein"]
     },
     {
       "id": 13,
       "name": "Diesel",
-      "aliases": [
-        "diesel"
-      ]
+      "aliases": ["diesel"]
     },
     {
       "id": 14,
       "name": "Donut Pit",
-      "aliases": [
-        "donut pit"
-      ]
+      "aliases": ["donut pit", "doughnut pit"]
     },
     {
       "id": 15,
       "name": "Drag Racing",
-      "aliases": [
-        "drag racing"
-      ]
+      "aliases": ["drag racing"]
     },
     {
       "id": 16,
       "name": "Dragster/Roadster",
-      "aliases": [
-        "dragster/roadster"
-      ]
+      "aliases": ["dragster/roadster", "dragster roadster", "dragster and roadster"]
     },
     {
       "id": 17,
       "name": "ET Big Bucks",
-      "aliases": [
-        "et big bucks"
-      ]
+      "aliases": ["et big bucks", "e t big bucks", "et big buck"]
     },
     {
       "id": 18,
       "name": "ET Motorcycle",
-      "aliases": [
-        "et motorcycle"
-      ]
+      "aliases": ["et motorcycle", "e t motorcycle", "et bike"]
     },
     {
       "id": 19,
       "name": "Factory Stock Showdown",
-      "aliases": [
-        "factory stock showdown"
-      ]
+      "aliases": ["factory stock showdown", "factory stock", "factory showdown"]
     },
     {
       "id": 20,
       "name": "Footbrake",
-      "aliases": [
-        "footbrake"
-      ]
+      "aliases": ["footbrake", "foot brake", "foot-brake"]
     },
     {
       "id": 21,
       "name": "Funny Car",
-      "aliases": [
-        "funny car"
-      ]
+      "aliases": ["funny car", "funny cars"]
     },
     {
       "id": 22,
       "name": "Gasser",
-      "aliases": [
-        "gasser"
-      ]
+      "aliases": ["gasser", "gassers"]
     },
     {
       "id": 23,
       "name": "Group 1",
-      "aliases": [
-        "group 1"
-      ]
+      "aliases": ["group 1", "group one"]
     },
     {
       "id": 24,
       "name": "Group 2",
-      "aliases": [
-        "group 2"
-      ]
+      "aliases": ["group 2", "group two"]
     },
     {
       "id": 25,
       "name": "Grudge",
-      "aliases": [
-        "grudge"
-      ]
+      "aliases": ["grudge", "grudge racing", "grudge race"]
     },
     {
       "id": 26,
       "name": "Heads Up",
-      "aliases": [
-        "heads up"
-      ]
+      "aliases": ["heads up", "heads-up", "head's up"]
     },
     {
       "id": 27,
       "name": "Heavy",
-      "aliases": [
-        "heavy"
-      ]
+      "aliases": ["heavy", "heavy class"]
     },
     {
       "id": 28,
       "name": "High School",
-      "aliases": [
-        "high school"
-      ]
+      "aliases": ["high school", "highschool"]
     },
     {
       "id": 29,
       "name": "Hole in the Hood",
-      "aliases": [
-        "hole in the hood"
-      ]
+      "aliases": ["hole in the hood"]
     },
     {
       "id": 30,
       "name": "Hot Rod",
-      "aliases": [
-        "hot rod"
-      ]
+      "aliases": ["hot rod", "hotrod", "hot rods"]
     },
     {
       "id": 31,
       "name": "Hot Rod 1",
-      "aliases": [
-        "hot rod 1"
-      ]
+      "aliases": ["hot rod 1", "hot rod one", "hotrod 1"]
     },
     {
       "id": 32,
       "name": "Hot Rod 2",
-      "aliases": [
-        "hot rod 2"
-      ]
+      "aliases": ["hot rod 2", "hot rod two", "hotrod 2"]
     },
     {
       "id": 33,
       "name": "Import",
-      "aliases": [
-        "import"
-      ]
+      "aliases": ["import", "imports"]
     },
     {
       "id": 34,
       "name": "Inline/Flathead",
-      "aliases": [
-        "inline/flathead"
-      ]
+      "aliases": ["inline/flathead", "inline flathead", "inline and flathead"]
     },
     {
       "id": 35,
       "name": "Jets",
-      "aliases": [
-        "jets"
-      ]
+      "aliases": ["jets", "jet cars", "jet dragsters"]
     },
     {
       "id": 36,
       "name": "Junior Dragster",
-      "aliases": [
-        "junior dragster"
-      ]
+      "aliases": ["junior dragster", "jr dragster", "jr. dragster", "junior drag"]
     },
     {
       "id": 37,
       "name": "Junior Dragsters",
-      "aliases": [
-        "junior dragsters"
-      ]
+      "aliases": ["junior dragsters", "jr dragsters", "jr. dragsters"]
     },
     {
       "id": 38,
       "name": "Junior Street",
-      "aliases": [
-        "junior street"
-      ]
+      "aliases": ["junior street", "jr street", "jr. street"]
     },
     {
       "id": 39,
       "name": "Land of Leaders",
-      "aliases": [
-        "land of leaders"
-      ]
+      "aliases": ["land of leaders", "land of the leaders"]
     },
     {
       "id": 40,
       "name": "Modern Muscle",
-      "aliases": [
-        "modern muscle"
-      ]
+      "aliases": ["modern muscle"]
     },
     {
       "id": 41,
       "name": "Motorcycle",
-      "aliases": [
-        "motorcycle"
-      ]
+      "aliases": ["motorcycle", "motorcycles", "bike class"]
     },
     {
       "id": 42,
       "name": "Mountain Motor Pro Stock",
-      "aliases": [
-        "mountain motor pro stock"
-      ]
+      "aliases": ["mountain motor pro stock", "mountain motor", "mountain pro stock"]
     },
     {
       "id": 43,
       "name": "No Box",
-      "aliases": [
-        "no box"
-      ]
+      "aliases": ["no box", "no-box", "nobox"]
     },
     {
       "id": 44,
       "name": "No Time",
-      "aliases": [
-        "no time"
-      ]
+      "aliases": ["no time", "no-time"]
     },
     {
       "id": 45,
       "name": "Non Electronics",
-      "aliases": [
-        "non electronics"
-      ]
+      "aliases": ["non electronics", "non-electronics", "no electronics"]
     },
     {
       "id": 46,
       "name": "Nor Cal Drag Bikes",
-      "aliases": [
-        "nor cal drag bikes"
-      ]
+      "aliases": ["nor cal drag bikes", "norcal drag bikes"]
     },
     {
       "id": 47,
       "name": "Open Drags",
-      "aliases": [
-        "open drags"
-      ]
+      "aliases": ["open drags"]
     },
     {
       "id": 48,
       "name": "Open Test and Tune",
-      "aliases": [
-        "open test and tune"
-      ]
+      "aliases": ["open test and tune", "open test n tune"]
     },
     {
       "id": 49,
       "name": "Pickup",
-      "aliases": [
-        "pickup"
-      ]
+      "aliases": ["pickup", "pick up", "pickups"]
     },
     {
       "id": 50,
       "name": "Powderpuff",
-      "aliases": [
-        "powderpuff"
-      ]
+      "aliases": ["powderpuff", "powder puff"]
     },
     {
       "id": 51,
       "name": "Pro",
-      "aliases": [
-        "pro"
-      ]
+      "aliases": ["pro", "pro class"]
     },
     {
       "id": 52,
       "name": "Pro Mod",
-      "aliases": [
-        "pro mod"
-      ]
+      "aliases": ["pro mod", "pro modified"]
     },
     {
       "id": 53,
       "name": "Pro Nostalgia",
-      "aliases": [
-        "pro nostalgia"
-      ]
+      "aliases": ["pro nostalgia"]
     },
     {
       "id": 54,
       "name": "Pro Stock",
-      "aliases": [
-        "pro stock"
-      ]
+      "aliases": ["pro stock"]
     },
     {
       "id": 55,
       "name": "Pro Stock Motorcycle",
-      "aliases": [
-        "pro stock motorcycle"
-      ]
+      "aliases": ["pro stock motorcycle", "pro stock bike", "pro stock bikes", "pro stock motor"]
     },
     {
       "id": 56,
       "name": "Quick 16",
-      "aliases": [
-        "quick 16"
-      ]
+      "aliases": ["quick 16", "quick sixteen"]
     },
     {
       "id": 57,
       "name": "Real Steel",
-      "aliases": [
-        "real steel"
-      ]
+      "aliases": ["real steel"]
     },
     {
       "id": 58,
       "name": "Run What You Brung",
-      "aliases": [
-        "run what you brung"
-      ]
+      "aliases": ["run what you brung", "run whatcha brung", "run what ya brung"]
     },
     {
       "id": 59,
       "name": "Sled/Bike",
-      "aliases": [
-        "sled/bike"
-      ]
+      "aliases": ["sled/bike", "sled bike", "sled and bike"]
     },
     {
       "id": 60,
       "name": "Sport Compact",
-      "aliases": [
-        "sport compact"
-      ]
+      "aliases": ["sport compact", "sport compacts"]
     },
     {
       "id": 61,
       "name": "Sportsman",
-      "aliases": [
-        "sportsman"
-      ]
+      "aliases": ["sportsman", "sportsman class"]
     },
     {
       "id": 62,
       "name": "Stick Shift",
-      "aliases": [
-        "stick shift"
-      ]
+      "aliases": ["stick shift", "stickshift"]
     },
     {
       "id": 63,
       "name": "Stock Eliminator",
-      "aliases": [
-        "stock eliminator"
-      ]
+      "aliases": ["stock eliminator", "stock elim", "stock elimination"]
     },
     {
       "id": 64,
       "name": "Street ET",
-      "aliases": [
-        "street et"
-      ]
+      "aliases": ["street et", "street e t"]
     },
     {
       "id": 65,
       "name": "Street Legal",
-      "aliases": [
-        "street legal"
-      ]
+      "aliases": ["street legal"]
     },
     {
       "id": 66,
       "name": "Street Machine",
-      "aliases": [
-        "street machine"
-      ]
+      "aliases": ["street machine"]
     },
     {
       "id": 67,
       "name": "Street Machine 1",
-      "aliases": [
-        "street machine 1"
-      ]
+      "aliases": ["street machine 1", "street machine one"]
     },
     {
       "id": 68,
       "name": "Street Machine 2",
-      "aliases": [
-        "street machine 2"
-      ]
+      "aliases": ["street machine 2", "street machine two"]
     },
     {
       "id": 69,
       "name": "Street Rod",
-      "aliases": [
-        "street rod"
-      ]
+      "aliases": ["street rod", "street rods"]
     },
     {
       "id": 70,
       "name": "Super Comp",
-      "aliases": [
-        "super comp"
-      ]
+      "aliases": ["super comp", "super competition"]
     },
     {
       "id": 71,
       "name": "Super Comp Association",
-      "aliases": [
-        "super comp association"
-      ]
+      "aliases": ["super comp association"]
     },
     {
       "id": 72,
       "name": "Super Gas",
-      "aliases": [
-        "super gas"
-      ]
+      "aliases": ["super gas"]
     },
     {
       "id": 73,
       "name": "Super Pro",
-      "aliases": [
-        "super pro"
-      ]
+      "aliases": ["super pro"]
     },
     {
       "id": 74,
       "name": "Super Shifter",
-      "aliases": [
-        "super shifter"
-      ]
+      "aliases": ["super shifter"]
     },
     {
       "id": 75,
       "name": "Super Stock",
-      "aliases": [
-        "super stock"
-      ]
+      "aliases": ["super stock"]
     },
     {
       "id": 76,
       "name": "Super Street",
-      "aliases": [
-        "super street"
-      ]
+      "aliases": ["super street"]
     },
     {
       "id": 77,
       "name": "Test and Tune",
-      "aliases": [
-        "test and tune"
-      ]
+      "aliases": ["test and tune", "test n tune", "test & tune"]
     },
     {
       "id": 78,
       "name": "Top Alcohol Dragster",
-      "aliases": [
-        "top alcohol dragster"
-      ]
+      "aliases": ["top alcohol dragster", "ta dragster", "alcohol dragster"]
     },
     {
       "id": 79,
       "name": "Top Alcohol Funny Car",
-      "aliases": [
-        "top alcohol funny car"
-      ]
+      "aliases": ["top alcohol funny car", "ta funny car", "alcohol funny car"]
     },
     {
       "id": 80,
       "name": "Top Dragster",
-      "aliases": [
-        "top dragster"
-      ]
+      "aliases": ["top dragster"]
     },
     {
       "id": 81,
       "name": "Top Fuel",
-      "aliases": [
-        "top fuel"
-      ]
+      "aliases": ["top fuel"]
     },
     {
       "id": 82,
       "name": "Top Gas",
-      "aliases": [
-        "top gas"
-      ]
+      "aliases": ["top gas"]
     },
     {
       "id": 83,
       "name": "Top Sportsman",
-      "aliases": [
-        "top sportsman"
-      ]
+      "aliases": ["top sportsman"]
     },
     {
       "id": 84,
       "name": "Trophy",
-      "aliases": [
-        "trophy"
-      ]
+      "aliases": ["trophy", "trophy class"]
     },
     {
       "id": 85,
       "name": "Truck",
-      "aliases": [
-        "truck"
-      ]
+      "aliases": ["truck", "trucks"]
     },
     {
       "id": 86,
       "name": "Two-Step Competition",
-      "aliases": [
-        "two-step competition"
-      ]
+      "aliases": ["two-step competition", "two step competition", "two step"]
     },
     {
       "id": 87,
       "name": "Volkswagen",
-      "aliases": [
-        "volkswagen"
-      ]
+      "aliases": ["volkswagen", "vw", "volkswagens"]
     },
     {
       "id": 88,
       "name": "West Coast Outlaws Heads Up",
-      "aliases": [
-        "west coast outlaws heads up"
-      ]
+      "aliases": ["west coast outlaws heads up", "west coast outlaws"]
     }
   ]
 }
