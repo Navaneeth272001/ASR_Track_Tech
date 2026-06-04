@@ -5,6 +5,7 @@ This module now loads classes from a JSON file (class_config.json) and
 supports hot-reloading of the class map via MQTT.
 """
 
+import os
 import json
 from pathlib import Path
 import threading
@@ -146,6 +147,16 @@ CLASS_MAP = _class_map
 # ===========================
 USE_LLM_FRAMING = False  # Set to True to use AWS Bedrock (Claude 3 Haiku) for intelligent intent framing
 BEDROCK_MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
+
+# ===========================
+# OpenAI RAG Configuration
+# ===========================
+USE_RAG_CLASSIFIER = True   # Highest priority: OpenAI RAG pipeline (overrides USE_LLM_FRAMING)
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+OPENAI_MODEL = "gpt-4o-mini"               # Chat model for classification
+OPENAI_EMBEDDING_MODEL = "text-embedding-3-small"  # Embedding model for retrieval
+RAG_KNOWLEDGE_BASE_PATH = Path("TrackTech announcements structure.txt")
+RAG_TOP_K = 3               # Number of knowledge base chunks to retrieve per query
 
 # ===========================
 # Intent Patterns (Fallback if LLM is disabled)

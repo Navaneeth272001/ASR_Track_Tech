@@ -8,7 +8,7 @@ import jellyfish
 from rapidfuzz import fuzz, process
 from config import (
     INTENT_PATTERNS, DEBOUNCE_SECONDS, DEDUP_WINDOW_MS, get_classmap, DEBUG,
-    USE_LLM_FRAMING, BEDROCK_MODEL_ID, AWS_REGION
+    USE_LLM_FRAMING, BEDROCK_MODEL_ID, AWS_REGION, USE_RAG_CLASSIFIER
 )
 
 # ===========================
@@ -452,7 +452,29 @@ def build_messages(transcript, timestamp):
     if not classes:
         return []
 
-    if USE_LLM_FRAMING:
+    if USE_RAG_CLASSIFIER:
+        try:
+            from rag_classifier import classify_with_rag, initialize_knowledge_base
+            # Ensure KB is initialized (no-op after first call)
+            initialize_knowledge_base()
+            msgs = classify_with_rag(transcript, timestamp)
+            if msgs:  # RAG succeeded and found results
+                pass  # use RAG results
+            elif classes:  # RAG returned nothing, fall through to existing pipeline
+                if DEBUG:
+                    print("[classifier] RAG returned no results, falling back")
+                if USE_LLM_FRAMING:
+                    msgs = build_messages_with_llm(transcript, timestamp, classes)
+                else:
+                    msgs = build_messages_fallback(transcript, timestamp, classes)
+        except Exception as e:
+            if DEBUG:
+                print(f"[classifier] RAG error, falling back: {e}")
+            if USE_LLM_FRAMING:
+                msgs = build_messages_with_llm(transcript, timestamp, classes)
+            else:
+                msgs = build_messages_fallback(transcript, timestamp, classes)
+    elif USE_LLM_FRAMING:
         msgs = build_messages_with_llm(transcript, timestamp, classes)
     else:
         msgs = build_messages_fallback(transcript, timestamp, classes)
