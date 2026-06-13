@@ -104,12 +104,8 @@ def test_classification():
     initialize_knowledge_base()
 
     test_transcripts = [
-        "Super Pro, please make your way down to the staging lanes. Super Pro to the lanes.",
-        "Attention Top Fuel drivers, you are on standby. Top Fuel, be ready.",
-        "Junior Dragster, time to line up. Junior Dragster to the grid.",
-        "Can I have all Pro Stock and Funny Car drivers report to the staging area please.",
-        "Street Legal, you're up next. Street Legal, head on down to the lanes.",
-        "Attention all drivers, there will be a mandatory drivers meeting in the tower in ten minutes.",
+        "So races hopefully you got a good night's rest. hopefully you are ready to go for it this morning, but, uh, we're gonna put super street and stock on standby.",
+        "Supertre and stock, you are on standby a few minutes away.",
     ]
 
     timestamp = datetime.datetime.utcnow().isoformat() + "Z"

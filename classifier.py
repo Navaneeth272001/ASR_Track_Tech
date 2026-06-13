@@ -406,7 +406,15 @@ If no intent is detected, return an empty array [].'''
 
 def build_messages_fallback(transcript, timestamp, classes):
     """Fallback logic that uses the detected phrase/keywords to frame the message."""
-    intents = find_intents_with_context(transcript)
+    raw_intents = find_intents_with_context(transcript)
+    
+    # Unique the intents so we don't send multiple CLASS_TO_LANES just because 
+    # the speaker said "head to" and "the lanes" in the same sentence.
+    unique_intents = {}
+    for intent, matched_kw in raw_intents:
+        if intent not in unique_intents:
+            unique_intents[intent] = matched_kw
+
     msgs = []
     classmap = get_classmap()
 
@@ -416,7 +424,7 @@ def build_messages_fallback(transcript, timestamp, classes):
                 print(f"[classifier] warning: class '{cls}' not in classmap")
             continue
 
-        for intent, matched_kw in intents:
+        for intent, matched_kw in unique_intents.items():
             if should_send(cls, intent):
                 class_id = classmap[cls]["id"]
 
