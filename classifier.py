@@ -449,8 +449,6 @@ def build_messages(transcript, timestamp):
     Applies utterance-level deduplication before returning.
     """
     classes = find_classes(transcript)
-    if not classes:
-        return []
 
     if USE_RAG_CLASSIFIER:
         try:
@@ -467,17 +465,25 @@ def build_messages(transcript, timestamp):
                     msgs = build_messages_with_llm(transcript, timestamp, classes)
                 else:
                     msgs = build_messages_fallback(transcript, timestamp, classes)
+            else:
+                msgs = []
         except Exception as e:
             if DEBUG:
                 print(f"[classifier] RAG error, falling back: {e}")
-            if USE_LLM_FRAMING:
-                msgs = build_messages_with_llm(transcript, timestamp, classes)
+            if classes:
+                if USE_LLM_FRAMING:
+                    msgs = build_messages_with_llm(transcript, timestamp, classes)
+                else:
+                    msgs = build_messages_fallback(transcript, timestamp, classes)
             else:
-                msgs = build_messages_fallback(transcript, timestamp, classes)
-    elif USE_LLM_FRAMING:
-        msgs = build_messages_with_llm(transcript, timestamp, classes)
+                msgs = []
+    elif classes:
+        if USE_LLM_FRAMING:
+            msgs = build_messages_with_llm(transcript, timestamp, classes)
+        else:
+            msgs = build_messages_fallback(transcript, timestamp, classes)
     else:
-        msgs = build_messages_fallback(transcript, timestamp, classes)
+        msgs = []
 
     # Fix 3: Utterance-level deduplication
     # Group messages by intent to build dedup keys

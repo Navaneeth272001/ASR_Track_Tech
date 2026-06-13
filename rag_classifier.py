@@ -257,9 +257,16 @@ def retrieve_relevant_chunks(query: str, top_k: int = None) -> list:
 # ===========================
 
 def _build_canonical_class_list_str() -> str:
-    """Build a formatted string of all canonical class names."""
+    """Build a formatted string of all canonical class names and their aliases."""
     classmap = get_classmap()
-    return ", ".join(sorted(classmap.keys()))
+    lines = []
+    for cls, data in sorted(classmap.items()):
+        aliases = data.get("aliases", [])
+        if aliases:
+            lines.append(f"- {cls} (aliases/phonetics: {', '.join(aliases)})")
+        else:
+            lines.append(f"- {cls}")
+    return "\n".join(lines)
 
 
 def classify_with_rag(transcript: str, timestamp: str) -> list:
@@ -299,24 +306,25 @@ You have access to a knowledge base of track and event information to help you u
 {context_text}
 --- END CONTEXT ---
 
-VALID CLASS NAMES (you MUST only use class names from this list):
-[{canonical_list_str}]
+VALID CLASS NAMES (and their common aliases/mispronunciations):
+{canonical_list_str}
 
 VALID INTENTS:
-- CLASS_TO_LANES: The announcer is directing a class to go to staging lanes, grid, track, line up, etc.
-- CLASS_STANDBY: The announcer is telling a class to hold, wait, get ready, standby, be on deck, etc.
-- GENERAL_ANNOUNCEMENT: Other important notices, updates, or information about a class.
+- CLASS_TO_LANES: The announcer is directing a class to go to staging lanes, grid, track, line up, pull up, need you down here, etc.
+- CLASS_STANDBY: The announcer is telling a class to hold, wait, get ready, standby, be on deck, in the hole, listen for the call, etc.
+- GENERAL_ANNOUNCEMENT: Other important notices, updates, meetings, or information about a class.
 
 RULES:
-1. ONLY use class names that EXACTLY match one from the valid class list above.
-2. Use the knowledge base context to disambiguate class names. For example, if the context shows a specific track only has certain classes, prefer those classes.
-3. If multiple classes are mentioned, return ALL of them as separate objects.
-4. The "message_text" should be a clean, professional version of what the announcer said, using the exact class name and preserving the announcer's intent/keywords.
-5. If no valid class or intent can be identified, return an empty array [].
-6. Audio transcription may contain speech-to-text errors. Use the knowledge base and class list to correct likely misheard class names (e.g., "soup or pro" → "Super Pro", "top few" → "Top Fuel").
+1. ONLY return the primary canonical class name (e.g., "Super Pro", not an alias).
+2. The audio is from a race announcer, so the transcription may be messy, incomplete, or contain speech-to-text errors. Perform fuzzy matching, phonetic matching, and contextual deduction to match the transcription to the most accurate class and intent.
+3. Use the knowledge base context to disambiguate class names. If context shows a track only has certain classes, prefer those.
+4. If multiple classes are mentioned, return ALL of them as separate objects.
+5. The "message_text" should be a clean, professional version of what the announcer said, using the exact class name and preserving the announcer's intent/keywords.
+6. If the intent or class is implicit but clear from context, match it. For example, "we need the bikes down here" -> Class: "Motorcycle", Intent: "CLASS_TO_LANES".
+7. If no valid class or intent can be identified, return an empty array [].
 
 Output ONLY a valid JSON array. Each object must have:
-- "class_name": string (must exactly match a valid class name)
+- "class_name": string (must exactly match a valid primary canonical class name)
 - "intent": string (one of the valid intents)
 - "message_text": string (clean announcement text)
 
