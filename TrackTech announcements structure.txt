@@ -180,11 +180,9 @@
         },
         {
           "family_name": "Specialty Race Series",
-          "source_status": "confirmed_public_schedule",
           "custom_classes": [
             "Modern Muscle",
             "Pickup",
-            "Volkswagen",
             "Super Shifter",
             "Powderpuff",
             "Hole in the Hood",
